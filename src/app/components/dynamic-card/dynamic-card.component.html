@@ -1,0 +1,13 @@
+<div class=" flex min-width  flex-col gap-1 px-4 py-4 rounded-2xl hover:shadow-lg shadow-md bg-white">
+
+    <div class="flex flex-row items-center gap-2">
+        <h4 class="text-sm text-slate-700">{{data?.header}}</h4>
+    </div>
+
+    <div class="p-0.5"></div>
+
+    <ng-container *ngIf="template">
+        <ng-container *ngTemplateOutlet="template; context:{$implicit: data?.value}">
+        </ng-container>
+    </ng-container>
+</div>

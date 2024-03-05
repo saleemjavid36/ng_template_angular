@@ -1,0 +1,63 @@
+<div class="flex flex-col h-screen items-center justify-center">
+
+
+    <div
+        class="backdrop flex flex-row xs max-sm:flex-col max-sm:items-center gap-8  px-8 py-8 rounded-2xl ">
+
+        <div class="flex flex-col gap-5">
+
+
+            <app-custom-expansion-panel>
+                <h4 *header class="text-sm font-medium">This is Header Header</h4>
+                <div *body class=" flex flex-row gap-4">
+                    <img class="object-cover aspect-square h-12 rounded-md"
+                        src="https://picsum.photos/500" />
+
+                    <p class="text-sm text-stone-700">Occaecat aute, but quam, for doloremque, and sequi minim.
+                        Nequeporro lorem doloremque officia.
+                        Occaecat. </p>
+                </div>
+            </app-custom-expansion-panel>
+
+
+            <app-custom-expansion-panel>
+
+                <h4 *header class="text-sm font-medium">This is Header Header</h4>
+                <div *body class=" flex flex-row gap-4">
+                    <img class="object-cover aspect-square h-12 rounded-md"
+                        src="https://picsum.photos/500" />
+
+                    <p class="text-sm text-stone-700">Occaecat aute, but quam, for doloremque, and sequi minim.
+                        Nequeporro lorem doloremque officia.
+                        Occaecat. </p>
+                </div>
+
+
+                <!-- custom template -->
+                <ng-container *headerTemplateDef="let headerContent; let expanded=isExpanded">
+
+                    <div class="transition cursor-pointer flex flex-row  rounded-md p-4"
+                        [ngClass]="{'bg-blue-600 text-white shadow-xl':expanded,
+                    'bg-slate-50 text-stone-900':!expanded }">
+                        <div class="flex flex-auto">
+                            <ng-container *ngTemplateOutlet="headerContent"></ng-container>
+
+                        </div>
+                        <span class="transition material-icons rotate-0 "
+                            [ngClass]="{'rotate-180':expanded }">expand_more</span>
+
+                    </div>
+                </ng-container>
+
+                <ng-container *bodyTemplateDef="let bodyConent">
+                    <div class="bg-white border-blue-600 border-2 rounded-md p-4 shadow-xl">
+
+                        <ng-container *ngTemplateOutlet="bodyConent"></ng-container>
+                    </div>
+                </ng-container>
+            </app-custom-expansion-panel>
+
+        </div>
+
+    </div>
+</div>

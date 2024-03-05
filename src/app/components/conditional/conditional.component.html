@@ -1,0 +1,32 @@
+<div class="flex flex-col h-screen items-center justify-center">
+    <div class="backdrop flex flex-col max-sm:items-center gap-8  px-8 py-8 rounded-2xl ">
+        <div class="card-area bg-white  p-8 rounded-xl shadow-md flex flex-col items-center  justify-center ">
+            <ng-container *ngIf="_isNotLoggedIn; else successTemplate">
+                <form class="gap-4 flex flex-col items-center" (ngSubmit)="onSubmit()"
+                    #loginForm="ngForm">
+                    <h2>Login</h2>
+                    <div class="bg-white flex flex-col gap-2">
+                        <label class="text-slate-500 text-sm" for="email">Email</label>
+                        <input
+                            class="rounded-md w-full bg-transparent outline outline-1 p-2 outline-slate-400 focus-visible:outline-slate-500"
+                            type="email" name="email" [(ngModel)]="email" required>
+                    </div>
+                    <div class="bg-white flex flex-col gap-2">
+                        <label class="text-slate-500 text-sm" for="password">Password</label>
+                        <input
+                            class="rounded-md w-full bg-transparent outline outline-1 p-2 outline-slate-400 focus-visible:outline-slate-500"
+                            type="password" name="password" [(ngModel)]="password" required>
+                    </div>
+                    <button
+                        class="px-4 py-2 rounded-md bg-zinc-600 text-white disabled:bg-zinc-200 disabled:text-zinc-400"
+                        type="submit" [disabled]="!loginForm.form.valid">Submit
+                    </button>
+                </form>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #successTemplate>
+    <app-success-template (logout)="logout($event)"></app-success-template>
+</ng-template>

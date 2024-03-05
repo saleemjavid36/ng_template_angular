@@ -1,0 +1,25 @@
+<div class=" flex  flex-col gap-1 px-4 py-4 rounded-2xl hover:shadow-lg shadow-md bg-white">
+
+    <div class="flex flex-row items-center gap-2">
+        <div class="rounded-full aspect-square h-10 bg-slate-300 flex justify-center items-center text-black text-opacity-30">{{model?.name | slice: 0:1}}</div>
+        <div class="flex flex-col">
+            <h4 class="text-sm text-gray-800">{{model?.name}}</h4>
+            <h5 class="text-xs text-gray-400">{{model?.date | date:"dd-MM-yyyy"}} </h5>
+        </div>
+    </div>
+
+    <div class="p-3 bg-slate-300"></div>
+
+    <ng-container
+        *ngTemplateOutlet="cardDescriptionTemplate 
+        || defaultDescriptionTemplate; 
+        context:{$implicit: model?.description}"
+    >
+    </ng-container>
+</div>
+<!-- let-description value is get from context:{$implicit: model?.description}-->
+<ng-template #defaultDescriptionTemplate let-description>
+    <div class="bg-gray-200 rounded-xl aspect-square h-52 flex justify-center items-center">
+        <h1 class="text-6xl text-gray-400">{{description}}</h1>
+    </div>
+</ng-template>

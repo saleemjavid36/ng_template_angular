@@ -1,0 +1,33 @@
+<div class="panel w-96" [ngClass]="{'expanded': isExpanded}" (click)="togglePanel()">
+    <ng-container
+        *ngTemplateOutlet="headerTemplate || defaultHeaderTemplate; context:{$implicit: headerContent , isExpanded: isExpanded}">
+    </ng-container>
+
+    <div class="mt-2" [@expandCollapse]="isExpanded && !isCollapsing ? 'expanded' : 'collapsed'"
+        (@expandCollapse.done)="onAnimationEnd($event)">
+
+        <ng-container class="panel-body" *ngIf="isExpanded">
+            <ng-container
+                *ngTemplateOutlet="bodyTemplate || defaultPanelTemplate; context:{$implicit: bodyConent}"></ng-container>
+        </ng-container>
+    </div>
+
+</div>
+
+
+<ng-template #defaultHeaderTemplate let-isExpanded="isExpanded" let-headerContent>
+
+    <div class=" flex cursor-pointer flex-row bg-slate-50 rounded-md p-4">
+        <div class="flex flex-auto">
+            <ng-container *ngTemplateOutlet="headerContent"></ng-container>
+        </div>
+        <span class="material-icons">{{ isExpanded ? 'expand_less' : 'expand_more' }}</span>
+    </div>
+
+</ng-template>
+
+<ng-template #defaultPanelTemplate let-bodyConent>
+    <div class="bg-slate-50 rounded-md p-4 ">
+        <ng-container *ngTemplateOutlet="bodyConent"></ng-container>
+    </div>
+</ng-template>

@@ -1,0 +1,30 @@
+<div class="tw-flex tw-flex-col tw-h-screen tw-items-center tw-justify-center">
+
+    <div class="backdrop tw-flex tw-flex-col max-sm:tw-items-center tw-gap-4 tw-px-8 tw-py-8 tw-rounded-2xl ">
+
+        <ng-container *ngFor="let item of _list">
+            <ng-container [ngSwitch]="item.valueType">
+                <app-dynamic-card *ngSwitchCase="'text'" [data]="item" [template]="textTemplate">
+                </app-dynamic-card>
+                <app-dynamic-card *ngSwitchCase="'input'" [data]="item" [template]="inputTemplate">
+                </app-dynamic-card>
+                <app-dynamic-card *ngSwitchCase="'image'" [data]="item" [template]="imageTemplate">
+                </app-dynamic-card>
+                <app-dynamic-card *ngSwitchDefault [data]="item" >
+                </app-dynamic-card>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #textTemplate let-value> 
+    <app-template-text [value]="value"></app-template-text> 
+ </ng-template> 
+
+ <ng-template #inputTemplate let-value> 
+    <app-template-input [value]="value" (valueChange)="_onInputChange($event)"></app-template-input> 
+ </ng-template> 
+
+ <ng-template #imageTemplate let-value> 
+    <app-template-image [value]="value" ></app-template-image> 
+ </ng-template> 
